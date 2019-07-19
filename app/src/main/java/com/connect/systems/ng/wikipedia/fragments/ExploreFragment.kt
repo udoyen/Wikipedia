@@ -35,7 +35,7 @@ class ExploreFragment : Fragment() {
     ): View? {
         var view = inflater.inflate(R.layout.fragment_explore, container, false)
 
-        searchCardView = view.findViewById(R.id.search_card_view)
+        searchCardView = view.findViewById(R.id.explore_card_view)
         exploreRecycler = view.findViewById(R.id.explore_article_recycler)
 
         searchCardView!!.setOnClickListener {

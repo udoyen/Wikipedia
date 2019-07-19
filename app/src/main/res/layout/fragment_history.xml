@@ -5,7 +5,7 @@
              tools:context="com.connect.systems.ng.wikipedia.fragments.HistoryFragment">
 
    <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/history_article_recycler"
+           android:id="@+id/favourites_article_recycler"
            android:layout_width="match_parent"
            android:layout_height="match_parent">
 

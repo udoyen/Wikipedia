@@ -20,6 +20,7 @@
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
                 app:contentScrim="?attr/colorPrimary">
             <androidx.cardview.widget.CardView
+                    android:id="@+id/explore_card_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
@@ -53,7 +54,7 @@
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/explore_article_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/appbar"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
 

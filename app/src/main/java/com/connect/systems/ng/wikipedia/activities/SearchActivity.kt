@@ -5,9 +5,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.widget.SearchView
 import com.connect.systems.ng.wikipedia.R
 import kotlinx.android.synthetic.main.activity_article_detail.*
 

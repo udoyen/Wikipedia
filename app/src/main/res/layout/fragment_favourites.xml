@@ -8,6 +8,6 @@
    <androidx.recyclerview.widget.RecyclerView
            android:id="@+id/favourites_article_recycler"
            android:layout_width="match_parent"
-           android:layout_height="match_parent" />
+           android:layout_height="match_parent" tools:listitem="@layout/article_card_item"/>
 
 </FrameLayout>

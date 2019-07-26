@@ -29,7 +29,7 @@ class HistoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_history, container, false)
-        historyRecycler = view.findViewById(R.id.favourites_article_recycler)
+        historyRecycler = view.findViewById(R.id.history_article_recycler)
         historyRecycler!!.layoutManager = LinearLayoutManager(context)
         historyRecycler!!.adapter = ArticleListItemRecyclerAdapter()
         return view

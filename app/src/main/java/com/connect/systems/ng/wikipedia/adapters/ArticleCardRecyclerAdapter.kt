@@ -14,7 +14,7 @@ class ArticleCardRecyclerAdapter : RecyclerView.Adapter<CardHolder>() {
      */
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): CardHolder {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        var cardItem = LayoutInflater.from(parent.context).inflate(R.layout.article_card_item, parent, false)
+        val cardItem = LayoutInflater.from(parent.context).inflate(R.layout.article_card_item, parent, false)
         return CardHolder(cardItem)
 
     }

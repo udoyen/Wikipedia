@@ -30,7 +30,7 @@ class FavouritesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_favourites, container, false)
+        val view = inflater.inflate(R.layout.fragment_favourites, container, false)
 
         favourites = view.findViewById(R.id.favourites_article_recycler)
         // set the layoutmanager

@@ -12,10 +12,10 @@ class ArticleListItemRecyclerAdapter : RecyclerView.Adapter<ListItemHolder>() {
     /**
      * Used to create the ViewHolder
      */
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ListItemHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ListItemHolder {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        var cardItem = LayoutInflater.from(p0.context).inflate(R.layout.article_list_item, p0, false)
-        return ListItemHolder(cardItem)
+        val listItem = LayoutInflater.from(parent.context).inflate(R.layout.article_list_item, parent, false)
+        return ListItemHolder(listItem)
 
     }
 

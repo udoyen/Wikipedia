@@ -15,7 +15,6 @@ class ArticleListItemRecyclerAdapter : RecyclerView.Adapter<ListItemHolder>() {
      * Used to create the ViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ListItemHolder {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         val listItem = LayoutInflater.from(parent.context).inflate(R.layout.article_list_item, parent, false)
         return ListItemHolder(listItem)
 

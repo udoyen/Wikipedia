@@ -33,6 +33,10 @@ class ArticleDetailActivity : AppCompatActivity() {
         // of android
         article_detail_webview?.webViewClient = object : WebViewClient() {
 
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                return false
+            }
+
             override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
                 handler?.proceed()
             }

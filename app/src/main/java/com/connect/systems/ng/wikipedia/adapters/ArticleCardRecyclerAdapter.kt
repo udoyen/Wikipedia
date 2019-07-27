@@ -15,7 +15,6 @@ class ArticleCardRecyclerAdapter : RecyclerView.Adapter<CardHolder>() {
      * Used to create the ViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): CardHolder {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         val cardItem = LayoutInflater.from(parent.context).inflate(R.layout.article_card_item, parent, false)
         return CardHolder(cardItem)
 
@@ -26,7 +25,6 @@ class ArticleCardRecyclerAdapter : RecyclerView.Adapter<CardHolder>() {
      * the recycler view
      */
     override fun getItemCount(): Int {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         return currentResults.size
     }
 
@@ -35,7 +33,6 @@ class ArticleCardRecyclerAdapter : RecyclerView.Adapter<CardHolder>() {
      * with new content from the page
      */
     override fun onBindViewHolder(holder: CardHolder, position: Int) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         var page = currentResults[position]
         // update view within holder
         holder.updateWithPage(page)

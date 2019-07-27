@@ -12,8 +12,8 @@ import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 
 class ListItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val articleImageView : ImageView = itemView.findViewById<ImageView>(R.id.result_icon)
-    private val titleTextView : TextView = itemView.findViewById<TextView>(R.id.result_title)
+    private val listArticleImageView : ImageView = itemView.findViewById(R.id.result_icon)
+    private val titleTextView : TextView = itemView.findViewById(R.id.result_title)
 
     private var currentPage: WikiPage? = null
 
@@ -24,18 +24,18 @@ class ListItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // the ArticleDetailActivity
         itemView.setOnClickListener { view: View? ->
             val detailPageIntent = Intent(itemView.context, ArticleDetailActivity::class.java)
-            var pageJson = Gson().toJson(currentPage)
+            val pageJson = Gson().toJson(currentPage)
             detailPageIntent.putExtra("page", pageJson)
             itemView.context.startActivity(detailPageIntent)
         }
     }
 
     fun updateWithPage(page: WikiPage) {
-        if (page.thumbnail != null)
-            Picasso.get().load(page.thumbnail!!.source).into(articleImageView)
-
+        currentPage = page
         titleTextView.text = page.title
 
-        currentPage = page
+        if (page.thumbnail != null)
+            Picasso.get().load(page.thumbnail!!.source).into(listArticleImageView)
+
     }
 }

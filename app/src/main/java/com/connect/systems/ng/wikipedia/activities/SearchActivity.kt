@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 class SearchActivity : AppCompatActivity() {
 
     private val articleProvider: ArticleDataProvider = ArticleDataProvider()
-    private var adapter: ArticleListItemRecyclerAdapter = ArticleListItemRecyclerAdapter()
+    var adapter: ArticleListItemRecyclerAdapter = ArticleListItemRecyclerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +65,7 @@ class SearchActivity : AppCompatActivity() {
                     adapter.currentResults.addAll(wikiResult.query!!.pages)
                     runOnUiThread { adapter.notifyDataSetChanged() }
                 }
-                println("updated search")
+//                println("updated search")
                 return false
             }
 

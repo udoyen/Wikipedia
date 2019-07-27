@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.connect.systems.ng.wikipedia.R
 import com.connect.systems.ng.wikipedia.holders.ListItemHolder
+import com.connect.systems.ng.wikipedia.models.WikiPage
 
 
 class ArticleListItemRecyclerAdapter : RecyclerView.Adapter<ListItemHolder>() {
 
+     val currentResults: ArrayList<WikiPage> = ArrayList()
     /**
      * Used to create the ViewHolder
      */
@@ -24,16 +26,17 @@ class ArticleListItemRecyclerAdapter : RecyclerView.Adapter<ListItemHolder>() {
      * the recycler view
      */
     override fun getItemCount(): Int {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        return 15
+        return currentResults.size
     }
 
     /**
      * Use this to update the ViewHolder content
      * with new content from the page
      */
-    override fun onBindViewHolder(p0: ListItemHolder, p1: Int) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onBindViewHolder(holder: ListItemHolder, position: Int) {
+
+        var page = currentResults[position]
+        holder.updateWithPage(page)
     }
 
 }

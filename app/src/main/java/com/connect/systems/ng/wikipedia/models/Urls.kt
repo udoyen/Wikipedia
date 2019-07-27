@@ -8,7 +8,7 @@ object Urls {
 
     fun getSearchUrl(term: String, skip: Int, take: Int) : String {
         return BaseUrl + "?action=query" +
-                "&fornatversion=2" +
+                "&formatversion=2" +
                 "&generator=prefixsearch" +
                 "&gpssearch=$term" +
                 "&gpslimit=$take" +
@@ -24,7 +24,7 @@ object Urls {
 
     fun getRandomUrl(take: Int) : String {
         return BaseUrl + "?action=query" +
-                "format=json" +
+                "&format=json" +
                 "&formatversion=2" +
                 "&generator=random" +
                 "&grnnamespace=0" +

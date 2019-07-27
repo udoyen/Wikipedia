@@ -7,10 +7,18 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.connect.systems.ng.wikipedia.R
+import com.connect.systems.ng.wikipedia.adapters.ArticleListItemRecyclerAdapter
+import com.connect.systems.ng.wikipedia.providers.ArticleDataProvider
 import kotlinx.android.synthetic.main.activity_article_detail.*
+import kotlinx.android.synthetic.main.activity_article_detail.toolbar
+import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
+
+    private val articleProvider: ArticleDataProvider = ArticleDataProvider()
+    private var adapter: ArticleListItemRecyclerAdapter = ArticleListItemRecyclerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +28,10 @@ class SearchActivity : AppCompatActivity() {
         // Reference to the supportActionBar in the layout file
         // set the action button on the left side of the toolbar
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        // setup the adapter
+        search_results_recycler.layoutManager = LinearLayoutManager(this)
+        search_results_recycler.adapter = adapter
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -46,8 +58,13 @@ class SearchActivity : AppCompatActivity() {
         searchView.requestFocus()
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean {
                 // Do the search and update the elements
+                articleProvider.search(query, 0, 20) { wikiResult ->
+                    adapter.currentResults.clear()
+                    adapter.currentResults.addAll(wikiResult.query!!.pages)
+                    runOnUiThread { adapter.notifyDataSetChanged() }
+                }
                 println("updated search")
                 return false
             }

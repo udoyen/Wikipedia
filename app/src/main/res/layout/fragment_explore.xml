@@ -40,7 +40,7 @@
                               android:layout_height="match_parent"
                               android:layout_gravity="center_vertical"
                               android:textSize="16sp"
-                              android:text="Search Wikipedia"
+                              android:text="@string/search_wikipedia"
                               android:gravity="center_vertical"/>
                 </LinearLayout>
 
@@ -51,12 +51,21 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/explore_article_recycler"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresher"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/appbar"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/explore_article_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/appbar"
+                />
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

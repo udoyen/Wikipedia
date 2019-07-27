@@ -22,7 +22,14 @@ class ArticleDataProvider {
                 if (response.statusCode != 200) {
                     throw Exception("Unable to get articles")
                 }
+                // destructure the result from
+                // the http request made
+                /**
+                 * @see "https://kotlinlang.org/docs/reference/multi-declarations.html"
+                 */
                 val(data, _) = result
+                // Call the responseHandler with the result
+                // that has been destructured
                 responseHandler.invoke(data as @ParameterName(name = "result") WikiResult)
             }
     }
@@ -31,7 +38,7 @@ class ArticleDataProvider {
         Urls.getRandomUrl(take).httpGet()
             .responseObject(WikipediaDataDeserializer()) { _, response, result ->
                 if (response.statusCode != 200) {
-                    throw Exception("Unable to get articles")
+                    throw Exception("Unable to get articles").cause!!
                 }
                 val(data, _) = result
                 responseHandler.invoke(data as @ParameterName(name = "result") WikiResult)
@@ -43,7 +50,6 @@ class ArticleDataProvider {
      */
     class WikipediaDataDeserializer : ResponseDeserializable<WikiResult> {
 
-
-        override fun deserialize(reader: Reader) = Gson().fromJson(reader, WikiResult::class.java)
+        override fun deserialize(reader: Reader): WikiResult? = Gson().fromJson(reader, WikiResult::class.java)
     }
 }

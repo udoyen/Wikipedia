@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.connect.systems.ng.wikipedia.R
 import com.connect.systems.ng.wikipedia.WikiApplication
 import com.connect.systems.ng.wikipedia.adapters.ArticleCardRecyclerAdapter
@@ -51,7 +52,7 @@ class FavouritesFragment : Fragment() {
 
         favourites = view.findViewById(R.id.favourites_article_recycler)
         // set the layoutmanager
-        favourites!!.layoutManager = LinearLayoutManager(context)
+        favourites!!.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         // set the adapter
         favourites!!.adapter = adapter
 

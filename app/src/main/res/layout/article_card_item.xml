@@ -16,7 +16,8 @@
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp">
             <ImageView android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:id="@+id/article_image"
@@ -24,6 +25,7 @@
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:id="@+id/article_title"
+                      android:layout_marginTop="8dp"
                         android:gravity="center"
                         android:textAlignment="center"
                         android:text="Hello World!"/>

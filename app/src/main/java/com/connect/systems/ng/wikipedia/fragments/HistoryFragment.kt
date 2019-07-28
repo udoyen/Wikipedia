@@ -31,6 +31,14 @@ class HistoryFragment : Fragment() {
     private var wikiManager : WikiManager? = null
     private var historyRecycler : RecyclerView? = null
     private val adapter = ArticleListItemRecyclerAdapter()
+
+    init {
+        // this tell the parent that
+        // the fragment will use this
+        // fragments menu rather than
+        // that of the parent
+        setHasOptionsMenu(true)
+    }
     /**
      * used to instantiate the WikiManager
      * as this isn't an activity
@@ -77,7 +85,7 @@ class HistoryFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item!!.itemId == R.id.action_clear_history) {
             // show confirmation alert
-            activity!!.alert("Are you sure you want to clear your history", "Conf") {
+            activity!!.alert("Are you sure you want to clear your history", "Confirm") {
                 yesButton {
                     // yes was hit
                     // clear history async

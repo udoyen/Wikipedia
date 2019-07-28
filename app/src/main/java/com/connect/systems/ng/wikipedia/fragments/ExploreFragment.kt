@@ -2,6 +2,7 @@ package com.connect.systems.ng.wikipedia.fragments
 
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 
@@ -14,8 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.connect.systems.ng.wikipedia.R
+import com.connect.systems.ng.wikipedia.WikiApplication
 import com.connect.systems.ng.wikipedia.activities.SearchActivity
 import com.connect.systems.ng.wikipedia.adapters.ArticleCardRecyclerAdapter
+import com.connect.systems.ng.wikipedia.managers.WikiManager
 import com.connect.systems.ng.wikipedia.models.WikiResult
 import com.connect.systems.ng.wikipedia.providers.ArticleDataProvider
 import java.lang.Exception
@@ -31,11 +34,21 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class ExploreFragment : Fragment() {
-    private val articleProvider: ArticleDataProvider = ArticleDataProvider()
+    private var wikiManager : WikiManager? = null
     private var searchCardView: CardView? = null
     private var exploreRecycler: RecyclerView? = null
     private var refresher: SwipeRefreshLayout? = null
     var adapter: ArticleCardRecyclerAdapter = ArticleCardRecyclerAdapter()
+
+    /**
+     * used to instantiate the WikiManager
+     * as this isn't an activity
+     */
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        wikiManager = (activity!!.applicationContext as WikiApplication).wikiManager
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -69,7 +82,7 @@ class ExploreFragment : Fragment() {
         refresher?.isRefreshing = true
 
         try {
-            articleProvider.getRandom(15) { wikiResult ->
+            wikiManager!!.getRandom(15) { wikiResult ->
                 adapter.currentResults.clear()
                 adapter.currentResults.addAll(wikiResult.query!!.pages)
                 activity!!.runOnUiThread {

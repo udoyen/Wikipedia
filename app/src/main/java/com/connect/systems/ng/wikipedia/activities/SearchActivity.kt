@@ -9,22 +9,28 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.connect.systems.ng.wikipedia.R
+import com.connect.systems.ng.wikipedia.WikiApplication
 import com.connect.systems.ng.wikipedia.adapters.ArticleListItemRecyclerAdapter
+import com.connect.systems.ng.wikipedia.managers.WikiManager
 import com.connect.systems.ng.wikipedia.providers.ArticleDataProvider
 import kotlinx.android.synthetic.main.activity_article_detail.*
 import kotlinx.android.synthetic.main.activity_article_detail.toolbar
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
-
-    private val articleProvider: ArticleDataProvider = ArticleDataProvider()
+    private var wikiManager : WikiManager? = null
     var adapter: ArticleListItemRecyclerAdapter = ArticleListItemRecyclerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
+        // used here as we are already within an activity
+        wikiManager = (applicationContext as WikiApplication).wikiManager
+
         // set the toolbar from the layout file
         setSupportActionBar(toolbar)
+
         // Reference to the supportActionBar in the layout file
         // set the action button on the left side of the toolbar
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -58,14 +64,16 @@ class SearchActivity : AppCompatActivity() {
         searchView.requestFocus()
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            /**
+             * @see "https://kotlinlang.org/docs/reference/lambdas.html"
+             */
             override fun onQueryTextSubmit(query: String): Boolean {
                 // Do the search and update the elements
-                articleProvider.search(query, 0, 20) { wikiResult ->
+                wikiManager!!.search(query, 0, 20) { wikiResult ->
                     adapter.currentResults.clear()
                     adapter.currentResults.addAll(wikiResult.query!!.pages)
                     runOnUiThread { adapter.notifyDataSetChanged() }
                 }
-//                println("updated search")
                 return false
             }
 
